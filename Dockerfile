@@ -1,3 +1,4 @@
+# Can't use alpine as Secp256k1 has a dependency on glibc
 FROM node:boron
 MAINTAINER Eng-Shien Wu <engshien.wu@ijji.com>
 
