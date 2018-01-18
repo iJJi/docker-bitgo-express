@@ -1,5 +1,5 @@
 # docker-bitgo-express
-A docker container for [bitgo express](https://github.com/BitGo/BitGoJS) built on alpine linux
+A docker container for [bitgo express](https://github.com/BitGo/BitGoJS)
 
 It's on [docker-hub](https://hub.docker.com/r/fingershock/bitgo-express/) and [github](https://github.com/iJJi/docker-bitgo-express)
 
@@ -8,14 +8,13 @@ It's on [docker-hub](https://hub.docker.com/r/fingershock/bitgo-express/) and [g
 
 ## running
 
-Running can be as simple as
+To run in test mode
 ```sh
 docker run -P fingershock/bitgo-express
 ```
 
-Passing simple options without a full-blown config file can also be done using `bitgo-express_OPTS`
-
+To run in production mode
 ```sh
-docker run -P fingershock/bitgo-express -d --restart always
+docker run -e BITGO_ENV=prod -P fingershock/bitgo-express -d --restart always
 ```
 
