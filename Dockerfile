@@ -2,7 +2,7 @@
 FROM node:boron
 MAINTAINER Eng-Shien Wu <engshien.wu@ijji.com>
 
-ARG BITGO_VERSION=4.17.1
+ENV BITGO_VERSION=4.17.1
 LABEL GF_APP_NAME=bitgo-express \
       GF_APP_VERSION=${BITGO_VERSION:-latest}
 
