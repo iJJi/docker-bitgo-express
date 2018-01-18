@@ -11,14 +11,14 @@ before_install:
   - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 
 before_script:
-  - repo=fingershock/elasticmq
+  - repo=fingershock/bitgo-express
 
 script:
   - docker build -t $repo .
-  - docker run --rm $repo java -version
+  - docker run --rm $repo /usr/local/lib/node_modules/bitgo/bin/bitgo-express --version
 
 after_success:
-  - tag=$(docker run --rm $repo sh -c 'echo $ELASTICMQ_VERSION')
+  - tag=$(docker run --rm $repo sh -c 'echo $BITGO_VERSION')
   - docker tag $repo $repo:$tag
   - docker push $repo:latest
   - docker push $repo:$tag
