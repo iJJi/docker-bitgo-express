@@ -1,0 +1,14 @@
+Dockerfile*
+.dockerignore
+.git/
+.gitignore
+.DS_Store
+coverage/
+.travis.yml
+node_modules/
+.idea
+/.project
+npm-debug.log
+src/tool
+gulpfile.js
+*.md
