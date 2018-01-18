@@ -1,7 +1,7 @@
 FROM node:boron
 MAINTAINER Eng-Shien Wu <engshien.wu@ijji.com>
 
-ARG BITGO_VERSION=4.18.1
+ARG BITGO_VERSION=4.17.1
 LABEL GF_APP_NAME=bitgo-express \
       GF_APP_VERSION=${BITGO_VERSION:-latest}
 
@@ -11,7 +11,7 @@ ARG VCS_REF
 LABEL org.label-schema.build-date="$BUILD_DATE "\
       org.label-schema.docker.dockerfile="Dockerfile" \
       org.label-schema.license="MIT" \
-      org.label-schema.name="Docker Bitgo-Express" \
+      org.label-schema.name="Docker BitGo-Express" \
       org.label-schema.vcs-ref="$VCS_REF" \
       org.label-schema.vcs-type="git" \
       org.label-schema.vcs-url="https://github.com/iJJi/docker-bitgo-express" \
@@ -20,12 +20,11 @@ LABEL org.label-schema.build-date="$BUILD_DATE "\
 
 EXPOSE 3080
 
-WORKDIR /usr/src/app
-
 # "test" or "prod" (instead of "production")
 ENV BITGO_ENV=test
 
-RUN git clone --branch "$BITGO_VERSION" "https://github.com/BitGo/BitGoJS" . && npm install
+# Option --unsafe installs files as root
+RUN npm install -g --unsafe "bitgo@$BITGO_VERSION"
 
 USER nobody
-CMD node bin/bitgo-express --env "$BITGO_ENV" --bind 0.0.0.0 --port 3080
+CMD /usr/local/lib/node_modules/bitgo/bin/bitgo-express --env "$BITGO_ENV" --bind 0.0.0.0 --port 3080
