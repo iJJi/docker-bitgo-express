@@ -1,4 +1,4 @@
-# Can't use alpine as Secp256k1 has a dependency on glibc
+# Can't use mhart/alpine-node as Secp256k1 has a dependency on glibc
 FROM node:boron
 MAINTAINER Eng-Shien Wu <engshien.wu@ijji.com>
 
@@ -28,4 +28,4 @@ ENV BITGO_ENV=test
 RUN npm install -g --unsafe "bitgo@$BITGO_VERSION"
 
 USER nobody
-CMD /usr/local/lib/node_modules/bitgo/bin/bitgo-express --env "$BITGO_ENV" --bind 0.0.0.0 --port 3080
+CMD /usr/local/lib/node_modules/bitgo/bin/bitgo-express --env "$BITGO_ENV"
