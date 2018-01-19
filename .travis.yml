@@ -2,8 +2,6 @@ branches:
   only:
     - master
 
-language: bash
-
 services:
   - docker
 
@@ -20,11 +18,11 @@ script:
   - docker run --rm $repo /usr/local/lib/node_modules/bitgo/bin/bitgo-express --version
 
 after_success:
-  - tag=$(docker run --rm $repo sh -c 'echo $BITGO_VERSION')
+  - tag=$(docker run --rm $repo --entrypoint=/bin/sh -c 'echo $BITGO_VERSION')
   - docker tag $repo $repo:$tag
   - docker push $repo:latest
   - docker push $repo:$tag
 
 notifications:
   slack:
-    secure: c9AMF/gTzFcXSl8qip5rkS0CE6EHJb7romu0RVi9YmcC8QlWWC8iV0Bf7TKXWg7Q0VqZ32zfYRMQxXEdYKpbseJ/zFnHPEj3p4cO+H8tKvQc/C3IhShVGN6DP4dlHShdnoZwndu50n2ZZD3ZpIvhGRmUqzIqTF4UYNpX4EYj2o9/2kEraOrT9fgTWM89VssyzuXLHC+pNMV399yBGEdioOcGU3I0q1W6yBGVZ+Po83i6hQwNDIRThWFcDVI+IooKqp304cnlg8MTPe9dcpNZkjQEqxohxrjgl04foDa76+MAnQ5lBx96bdtLh+LnmMfGqbA/JOE8Cm8Rl+PjpLkQhFzk0vyY4PbZBJp7uo4AtrEphjzgzetDbXAN1SSZW4HTYY2WLno9CEPJH4HJiLyASqjHY8SW69N/vdOeAzyR2gizTiYahvhGUo/8Cx2Iy91rlcPEgIYqtqtdWSlKFKD3EiiVrCyhQUauJvrkJfnul5Kzexz3zFSc5N9vGMMqarVErQnOuylMxcBDZ6QzK6ADoGlVvE8T2YnjZSUPZUceYwsLS2izGj9LElQ4CqXu+2g2KsxFh3Cxr6ez1Rx7+gYTsDEYQ3U0Uiil1qYrJlgEuXUxQTPsXlbmWZNoPAuqi98RZ6cejMm6IycmTt9S32Yh//nVODEUu7Dp+C5RlcZZRcY=
+    secure: T7CgwTj159ENHLY/iBGS9si+WZjbe8pq/SqS+RUiBEQv0WN0fAv8Te1cYRcOkZZWSWjQ67X8n4n8cXgaoXTORTrKpKALglBsnGqP720Jd2DeOF/K8cN09CXRP0L8JXeC8bh0ljFvB1NEDpauiPB2PSWNkxoCQQA+Brn4v0eLl7M8m9pdRBGPxxemKWn0bNtZHGrEzoyTSmzM1pOFP9Asebn706F+KT0PXvYM0Cq5ZkXqW/ZSwByoSjfDQP6WgJO83L8gWdpq5CXFltArh7pXdkg8XqzRufbOhSVlja/oTVedG6rj6Yh5/tcnhyHWqXmCuKpXn9jf86I0nGCDDmPA8XvF2MONzT92wfTjsKbtsRKaDxtSvJnI54U2FRcEusvmzxZqotu5efXOQjDRhHnFtRuMqKtt7iIZTCNxgvPd/Q/QJve6HBNiGlpIQfj+1b/1tDr3CWBMXOo41sET1BBPCJ0Fo3GUSV9l9l27YNfmXe6TZtn7aP2N1uqXr+KAWvjNVUEnmlRQdk7+686a4hsXhK+xP+yBndkgyyICkSvAZjKIivwkFhuXuQyGKsh7Och937fQ3Cxip62C21ZI7qi6ISQTD/7FOWSPGlnFF6Ty0MNVoOjrLAUhhujExKTf5mpv5OZS15hHiPQojnPSE/UGnKYFYnNxc0tlenRI3kqgwY0=
