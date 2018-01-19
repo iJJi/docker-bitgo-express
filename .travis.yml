@@ -12,9 +12,11 @@ before_install:
 
 before_script:
   - repo=fingershock/bitgo-express
+  - git_rev=$(git rev-parse --short HEAD)
+  - build_date=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
 
 script:
-  - docker build -t $repo .
+  - docker build -t $repo --build-arg VCS_REF=$git_rev --build-arg BUILD_DATE=$build_date .
   - docker run --rm $repo /usr/local/lib/node_modules/bitgo/bin/bitgo-express --version
 
 after_success:
@@ -25,4 +27,4 @@ after_success:
 
 notifications:
   slack:
-    secure: iM9+B44GcwxcqRltmUdos0wEAAlC+/RKmRz6KaI88MM9BateDmFAZlY8kqMfDjtUGVoF14ggOCNpnSUNxsX15eyI9qNFTv2cs+BxSsZqVIXZjJtn5h97ROyvQ+ZPBmDMfV6VHYIe52AjKzyODfe4UJ2raRQ1fYRw3AAf77R6bJYnOlhKwzppM7dNMl9yuTfAbpdvqEdRdagRs9gfc6G754cgypo5PWJFCiIFNUZIpiI17Dr/38MFCFUMfYNcC/ybd/g/W1FPMwVGUxTRbmasmI/SPV9SKJITjTDGxGYEIlIK8BrEgj2JlGgANDD0hseuJweFZBaO0fgSgyrDqUT7uiM6YliQKxpDs+jhRe2dDVWh1/osVBWq7J/W0sqW808D4XzEnRGFM/A9oDytqRdFlRNkQ+vEH9EGqHRLizKq/oJ6PVUQL7rRIT2Utv6Jze2jOfNdmMOuBkEcPR6SCUwip2KI79r/GQeRMKxd12PiI8J2WKUa6UFrhdGK/9e2DAnO+ZTo3prz73J9kH1Nf5bNPUj6EX9Z4XVlwUBCVrOsaRWdSJCUFya7Zq0Vt3SJ9aBGQQIxGd8vBJ6zhAwzYYKqw1R2dpLK6ADEzEYB+nSIjcpvCGbZx1spfA8B5GHzMPbPnaDleU5ixLsWOOzRcVi0NvTHUVOMQcgDZHi8hXtcg7s=
+    secure: c9AMF/gTzFcXSl8qip5rkS0CE6EHJb7romu0RVi9YmcC8QlWWC8iV0Bf7TKXWg7Q0VqZ32zfYRMQxXEdYKpbseJ/zFnHPEj3p4cO+H8tKvQc/C3IhShVGN6DP4dlHShdnoZwndu50n2ZZD3ZpIvhGRmUqzIqTF4UYNpX4EYj2o9/2kEraOrT9fgTWM89VssyzuXLHC+pNMV399yBGEdioOcGU3I0q1W6yBGVZ+Po83i6hQwNDIRThWFcDVI+IooKqp304cnlg8MTPe9dcpNZkjQEqxohxrjgl04foDa76+MAnQ5lBx96bdtLh+LnmMfGqbA/JOE8Cm8Rl+PjpLkQhFzk0vyY4PbZBJp7uo4AtrEphjzgzetDbXAN1SSZW4HTYY2WLno9CEPJH4HJiLyASqjHY8SW69N/vdOeAzyR2gizTiYahvhGUo/8Cx2Iy91rlcPEgIYqtqtdWSlKFKD3EiiVrCyhQUauJvrkJfnul5Kzexz3zFSc5N9vGMMqarVErQnOuylMxcBDZ6QzK6ADoGlVvE8T2YnjZSUPZUceYwsLS2izGj9LElQ4CqXu+2g2KsxFh3Cxr6ez1Rx7+gYTsDEYQ3U0Uiil1qYrJlgEuXUxQTPsXlbmWZNoPAuqi98RZ6cejMm6IycmTt9S32Yh//nVODEUu7Dp+C5RlcZZRcY=
